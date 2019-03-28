@@ -23,8 +23,17 @@ def cadastrar_pessoas():
 
 @app.route("/excluir_pessoas")
 def excluir():
+    # pega o nome fornecido para exclusão
+    nome = request.args.get("nome")
+
+    # percorre a lista de pessoas
     for i in lista_global:
-        x = request.args.get("nome")
+        # se o nome da pessoa atual for igual ao nome definido para exclusão    
+        if i.nome == nome:
+            # remove a pessoa da lista
+            lista_global.remove(i)
+            break
+    return listar_pessoas()
 
 
-app.run(host="0.0.0.0")
+app.run(host="0.0.0.0", debug=True)
