@@ -7,7 +7,8 @@
 <body>
     <h1>Listar Pessoas</h1>
     {%for p in pessoas:%}
-        {{p.nome}}<br>
+        {{p.nome}} <a href=/excluir_pessoas? nome={{p.nome}}>Excluir</a>
+        <br>
     {%endfor%}
     <form action=/form_inserir_pessoas>
         <input type=submit value=Inserir>
