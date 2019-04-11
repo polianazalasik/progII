@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <title>Inserir</title>
+    <link rel="stylesheet" type="text/css" href="/static/inicio.css">
+</head>
+<body>
+    <form action = "/form_alterar_pessoa">
+    <h5>Nome: </h5><input type = text name = nome value = {{p.nome}}>
+    <h5>Idade </h5><input type = text name = idade value = {{p.idade}}>
+    <button>Alterar</button>
+    <input value = {{pessoa.nome}} nome = nome_original type = hidden>
+    </form>
+</body>

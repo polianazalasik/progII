@@ -2,16 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8">
-	<title>Listar</title>
+    <title>Listar</title>
+    <link rel="stylesheet" type="text/css" href="/static/inicio.css">
 </head>
 <body>
     <h1>Listar Pessoas</h1>
     {%for p in pessoas:%}
-        {{p.nome}} <a href=/excluir_pessoas?nome={{p.nome}}>Excluir</a>
+        {{p.nome}} <a href=/excluir_pessoas?nome={{p.nome}}>Excluir</a> <a href = /form_alterar_pessoa?nome={{p.nome}}><img src = /static/lapis.png></a>
         <br>
     {%endfor%}
     <form action=/form_inserir_pessoas>
-        <input type=submit value=Inserir>
+        <button>Inserir</button>
     </form>
 </body>
 </html>
