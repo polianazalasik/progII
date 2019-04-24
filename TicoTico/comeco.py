@@ -1,12 +1,15 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from pessoa import Pessoa
 
 lista_global = []
 
 app = Flask(__name__)
 
-
 @app.route("/")
+def inicio():
+    return render_template("inicio.html")
+
+@app.route("/listar_pessoas")
 def listar_pessoas():
     return render_template("listar_pessoas.html", pessoas = lista_global)
 
@@ -16,37 +19,51 @@ def mostrar_pessoas():
 
 @app.route("/cadastrar")
 def cadastrar_pessoas():
+    cpf = request.args.get("cpf")
     nome = request.args.get("nome")
     idade = request.args.get("idade")
-    lista_global.append(Pessoa(nome, idade))
+    lista_global.append(Pessoa(cpf, nome, idade))
     return listar_pessoas()
 
 @app.route("/excluir_pessoas")
 def excluir():
-    # pega o nome fornecido para exclusão
-    nome = request.args.get("nome")
-
-    # percorre a lista de pessoas
+    cpf = request.args.get("cpf")
     for i in lista_global:
-        # se o nome da pessoa atual for igual ao nome definido para exclusão    
-        if i.nome == nome:
-            # remove a pessoa da lista
+        if i.cpf == cpf:
             lista_global.remove(i)
             break
     return listar_pessoas()
 
 @app.route("/form_alterar_pessoa")
 def form_alterar():
-    nome = request.args.get("nome")
+    cpf = request.args.get("cpf")
     for p in lista_global:
-        if p.nome == nome:
+        if p.cpf == cpf:
             return render_template("form_alterar_pessoa.html", pessoa = p)
-    return "Pessoa não encontrada:" +nome
+    return "Pessoa não encontrada:" +cpf
 
 @app.route("/alterar_pessoa")
 def alterar_pessoa():
-    procurar = request.args.get("nome_original")
+    procurar = request.args.get("cpf_original")
+    cpf = request.args.get("cpf")
     nome = request.args.get("nome")
     idade = request.args.get("idade")
+    novo = Pessoa(cpf, nome, idade)
+    for i in range(len(lista_global)):
+        if lista_global[i].cpf == procurar:
+            lista_global[i]= novo
+            return redirect(url_for("listar_pessoas"))
+    return "não achou" + procurar
+
+@app.route("/login")
+def login():
+    login = request.args.get("login")
+    senha = request.args.get("senha")
+    if login == "admin" & senha == "123":
+        session["usuario"] = login
+        return redirect("/")
+    else:
+        return "erro no login e/ou senha"
 
 app.run(host="0.0.0.0", debug=True)
+
