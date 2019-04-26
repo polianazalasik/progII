@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from pessoa import Pessoa
 
 lista_global = []
@@ -59,11 +59,21 @@ def alterar_pessoa():
 def login():
     login = request.args.get("login")
     senha = request.args.get("senha")
-    if login == "admin" & senha == "123":
+    if login == "admin" and senha == "123":
         session["usuario"] = login
         return redirect("/")
     else:
         return "erro no login e/ou senha"
 
+@app.route("/form_login")
+def form_login():
+    return render_template("form_login.html")
+
+@app.route("/logout")
+def logout():
+    session.pop("usuario")
+    return redirect("/")
+
+app.config['SECRET_KEY'] = 'RYDYDYT'
 app.run(host="0.0.0.0", debug=True)
 

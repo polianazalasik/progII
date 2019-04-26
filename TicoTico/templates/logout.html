@@ -1,0 +1,14 @@
+<html lang="pt-br" >
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>    
+    </head>
+    <body>
+        {%if session["usuario"]:%}
+            <a href ="/logout">Sair</a>
+        {%endif%}
+        {%else:%}
+            <a href ="/form_login">Login</a>
+        {%endelse%}
+    </body>
+</html>
