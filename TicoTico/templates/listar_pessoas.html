@@ -8,7 +8,7 @@
 <body>
     <h1>Listar Pessoas</h1>
     {%for p in pessoas:%}
-        {{p.cpf}} <a href=/excluir_pessoas?cpf={{p.cpf}}>Excluir</a> <a href=/form_alterar_pessoa?cpf={{p.cpf}}>Editar</a>
+        {{p.cpf}} <a href=/excluir_pessoas?cpf={{p.cpf}}><img src=/static/excluir.png></a> <a href=/form_alterar_pessoa?cpf={{p.cpf}}><img src =/static/lapis.png></a>
         <br>
     {%endfor%}
     <form action=/form_inserir_pessoas>
