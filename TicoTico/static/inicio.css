@@ -1,15 +1,52 @@
 button {
-    background-color: aqua;
+    background-color: grey;
 }
 
 h5 {
     font-family: fantasy;
-    color: purple;
+    color: black;
 }
 img {
     width: 30px;
     height: 30px;
 }
-body {
-    background-color: azure;
+fieldset {
+    border:2px solid gray;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;  
+    border-radius:8px;  
+    max-width:500px;
+    padding:16px;
 }
+label {
+    color: gray;
+}
+#menuu {
+    height: 60px;
+    background-color: black;
+    color: white;
+} 
+  
+#menuu ul {
+    padding:25px;
+    margin:20px;
+    list-style:none;
+    font-size: 20px;
+    color: white;
+    word-spacing: 35px;
+    font-family:"Yu Gothic Light";
+    float: right;
+    text-decoration: none;
+    position: relative;
+    top: -30px;
+}
+  
+#menuu ul li {
+    display: inline;
+}
+  
+.a a {
+    text-decoration: none;
+    color: white;
+}
+  
