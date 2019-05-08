@@ -5,16 +5,20 @@
         <link rel="stylesheet" type="text/css" href="/static/inicio.css">  
     </head>
     <body>
-        <form action = "/listar_pessoas">
-            <button>Listar</button>
-        </form>
-        <br>
-        <form action = "/form_login">
-            <button>Login</button>
-        </form>
-        <br>
-        <form action = "/logout">
-            <button>Logout</button>
-        </form>
+        {%if session['usuario']:%}
+            <form action = "/listar_pessoas">
+                <button>Listar</button>
+            </form>
+            <form action = "/logout">
+                <button>Logout</button>
+            </form>
+        {%else:%}
+            <form action = "/listar_pessoas">
+                <button>Listar</button>
+            </form>
+            <form action = "/form_login">
+                <button>Login</button>
+            </form>
+        {%endif%}
     </body>
 </html>
