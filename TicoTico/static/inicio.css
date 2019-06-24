@@ -4,6 +4,21 @@ button {
     height: 35px;
 }
 
+form{
+    font-size: 16px;
+    background: #9C9C9C;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 10px 10px 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid;
+    color: #FFF;
+    
+    
+}
+
 h5 {
     font-family: fantasy;
     color: black;

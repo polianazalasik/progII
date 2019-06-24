@@ -1,7 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from pessoa import Pessoa
+from peewee import *
 
-lista_global = []
+lista_global = Pessoa.select()
+
+db = SqliteDatabase("pessoa.db")
+
+class BaseModelo(Model):
+    class Meta():
+        database = db
+
+class Pessoa(BaseModelo):
+    cpf = CharField()
+    nome = CharField()
+    idade = CharField()
+
 
 app = Flask(__name__)
 
@@ -11,17 +23,17 @@ def inicio():
 
 @app.route("/listar_pessoas")
 def listar_pessoas():
-    return render_template("listar_pessoas.html", pessoas = lista_global)
+    return render_template("listar_pessoas.html", pessoas = Pessoa.select())
 
 @app.route("/form_inserir_pessoas")
 def mostrar_pessoas():
     return render_template("form_inserir_pessoas.html")
 
-@app.route("/cadastrar")
+@app.route("/cadastrar", methods = ["POST"])
 def cadastrar_pessoas():
-    cpf = request.args.get("cpf")
-    nome = request.args.get("nome")
-    idade = request.args.get("idade")
+    cpf = request.form["cpf"]
+    nome = request.form["nome"]
+    idade = request.form["idade"]
     lista_global.append(Pessoa(cpf, nome, idade))
     return listar_pessoas()
 
@@ -73,6 +85,12 @@ def form_login():
 def logout():
     session.pop("usuario")
     return redirect("/")
+
+
+db.connect()
+
+pessoa = Pessoa.create(cpf = "056987456", nome = "Poliana", idade = "17")
+
 
 app.config['SECRET_KEY'] = 'RYDYDYT'
 app.run(host="0.0.0.0", debug=True)
