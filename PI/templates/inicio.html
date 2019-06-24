@@ -1,0 +1,24 @@
+<html lang="pt-br" >
+    <head>
+        <meta charset="utf-8">
+        <title>Inicio</title>  
+        <link rel="stylesheet" type="text/css" href="inicio.css">  
+    </head>
+    <body>
+        {%if session['usuario']:%}
+            <form action = "/listar_pessoas">
+                <button>Listar</button>
+            </form>
+            <form action = "/logout">
+                <button>Logout</button>
+            </form>
+        {%else:%}
+            <form action = "/listar_pessoas">
+                <button>Listar</button>
+            </form>
+            <form action = "/form_login">
+                <button>Login</button>
+            </form>
+        {%endif%}
+    </body>
+</html>

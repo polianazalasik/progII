@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <title>Inserir</title>
+    <link rel="stylesheet" type="text/css" href="/static/inicio.css">
+</head>
+<body>
+    <form action = "/alterar_pessoa">
+        <h5>CPF: </h5>><input type = text name = cpf value = {{pessoa.cpf}}>
+        <h5>Nome: </h5><input type = text name = nome value = "{{pessoa.nome}}">
+        <input type=submit value=Alterar>
+        <input value = {{pessoa.cpf}} name = "cpf_original" type = hidden>
+    </form>
+</body>

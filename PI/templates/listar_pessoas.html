@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Listar</title>
+    <link rel="stylesheet" type="text/css" href="/static/inicio.css">
+</head>
+<body>
+    <h1>Listar Pessoas</h1>
+    {%for p in pessoas:%}
+        <img src ={{p.imagem}}> {{p.cpf}} {{p.nome}} <a href=/excluir_pessoas?cpf={{p.cpf}}><img src=/static/excluir.png></a> <a href=/form_alterar_pessoa?cpf={{p.cpf}}><img src =/static/lapis.png></a>
+        <br>
+    {%endfor%}
+    <form action=/form_inserir_pessoas>
+        <button>Inserir</button>
+    </form>
+</body>
+</html>
