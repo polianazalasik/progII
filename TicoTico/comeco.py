@@ -1,19 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from peewee import *
+from pessoa import Pessoa
 
-lista_global = Pessoa.select()
-
-db = SqliteDatabase("pessoa.db")
-
-class BaseModelo(Model):
-    class Meta():
-        database = db
-
-class Pessoa(BaseModelo):
-    cpf = CharField()
-    nome = CharField()
-    idade = CharField()
-
+lista_global = []
 
 app = Flask(__name__)
 
@@ -31,10 +20,24 @@ def mostrar_pessoas():
 
 @app.route("/cadastrar", methods = ["POST"])
 def cadastrar_pessoas():
-    cpf = request.form["cpf"]
     nome = request.form["nome"]
-    idade = request.form["idade"]
-    lista_global.append(Pessoa(cpf, nome, idade))
+    dd = request.form["dia"]
+    mm = request.form["mes"]
+    aaaa = request.form["ano"]
+    rg = request.form["rg"]
+    cpf = request.form["cpf"]
+    rua = request.form["rua"]
+    numero = request.form["numero"]
+    bairro = request.form["bairro"]
+    estado = request.form["estado"]
+    cidade = request.form["cidade"]
+    cep = request.form["cep"]
+    email = request.form["email"]
+    imagem = request.form["imagem"]
+    login = request.form["login"]
+    senha = request.form["senha"]
+    senhaconfirma = request.form["senhaconfirma"]
+    lista_global.append(Pessoa(nome, dd, mm, aaaa, rg, cpf, rua, numero, bairro, estado, cidade, cep, email, imagem, login, senha, senhaconfirma))
     return listar_pessoas()
 
 @app.route("/excluir_pessoas")
@@ -71,7 +74,7 @@ def alterar_pessoa():
 def login():
     login = request.args.get("login")
     senha = request.args.get("senha")
-    if login == "admin" and senha == "123":
+    if login == "poliana" and senha == "123":
         session["usuario"] = login
         return redirect("/")
     else:
@@ -85,12 +88,6 @@ def form_login():
 def logout():
     session.pop("usuario")
     return redirect("/")
-
-
-db.connect()
-
-pessoa = Pessoa.create(cpf = "056987456", nome = "Poliana", idade = "17")
-
 
 app.config['SECRET_KEY'] = 'RYDYDYT'
 app.run(host="0.0.0.0", debug=True)

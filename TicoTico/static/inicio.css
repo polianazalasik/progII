@@ -6,7 +6,7 @@ button {
 
 form{
     font-size: 16px;
-    background: #9C9C9C;
+    background: white;
     max-width: 500px;
     margin: 0 auto;
     padding: 0 10px 10px 10px;
@@ -14,7 +14,7 @@ form{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border: 1px solid;
-    color: #FFF;
+    color: grey;
     
     
 }
@@ -28,7 +28,7 @@ img {
     height: 30px;
 }
 fieldset {
-    border:2px solid gray;
+    border:2px solid;
     -moz-border-radius:8px;
     -webkit-border-radius:8px;  
     border-radius:8px;  
@@ -36,7 +36,7 @@ fieldset {
     padding:16px;
 }
 label {
-    color: gray;
+    color: black;
 }
 #menuu {
     height: 60px;

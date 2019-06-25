@@ -1,49 +1,40 @@
-from peewee import *
 import os
+from peewee import *
 
-arquivo = "escola.db"
-db = SqliteDatabase(arquivo)
+arq = "pessoa.db"
+db = SqliteDatabase(arq)
 
-class BaseModelo(Model):
-    class Meta():
+class BaseModel(Model):
+    class Meta:
         database = db
 
-class Aluno(BaseModelo):
-    matricula = CharField()
-    idade = CharField()
+class Pessoa(BaseModel):
     nome = CharField()
+    dd = CharField()
+    mm = CharField()
+    aaaa = CharField()
+    rg = CharField()
+    cpf = CharField()
+    rua = CharField()
+    numero = CharField()
+    bairro = CharField()
+    estado = CharField()
+    cidade = CharField()
+    cep = CharField()
+    email = CharField()
+    imagem = CharField()
+    login = CharField()
+    senha = CharField()
+    senha = CharField()
+    senhaconfirma = CharField()
 
     def __str__(self):
-        return "matricula: " + self.matricula + " nome:  " + self.nome + " idade: " + self.idade
-
-
-class Disciplina(BaseModelo):
-    alunos = ManyToManyField(Aluno)
-    carga_horaria = CharField()
-    nome = CharField()
-
-
-
-
-if os.path.exists(arquivo):
-    os.remove(arquivo)
+        return self.nome + " nasceu no dia " + self.dd + "/" + self.mm + "/" + self.aaaa 
+if os.path.exists(arq):
+    os.remove(arq)
 
 db.connect()
-db.create_tables([Aluno, Disciplina, Disciplina.alunos.get_through_model()])
+db.create_tables([Pessoa])
 
-maria = Aluno.create(matricula = "2017458534", idade = "18", nome = "Maria Luisa")
-david = Aluno.create(matricula = "2017856321", idade = "17", nome = "David Davi")
-
-programacao = Disciplina.create(carga_horaria = "120", nome = "Progração")
-historia = Disciplina.create(carga_horaria = "60", nome = "História")
-filosofia = Disciplina.create(carga_horaria = "30", nome = "Filosofia")
-
-maria.disciplinas.add([programacao, historia])
-david.disciplinas.add([programacao, filosofia])
-
-todo_mundo = Disciplina.select()
-
-for i in todo_mundo:
-    print("Quem cursa a disciplina" + i.nome)
-    for aluno in i.alunos:
-        print(aluno.nome)
+poliana = Pessoa.create(nome = "Poliana Zalasik", dd = "26", mm = "08", aaaa = "2001", rg = "8888888", cpf = "123456789876", rua = "06", numero = "06", bairro = "06", estado = "SC", cidade = "06", cep = "9999999", email = "polianaazalasik@outlook.com", imagem = "qualqueruma.png", login = "poliana", senha = "123", senhaconfirma = "123")
+print(poliana)
