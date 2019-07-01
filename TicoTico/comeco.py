@@ -18,8 +18,11 @@ def listar_pessoas():
 def mostrar_pessoas():
     return render_template("form_inserir_pessoas.html")
 
-@app.route("/cadastrar", methods = ["POST"])
+@app.route("/cadastrar2", methods = ["POST"])
 def cadastrar_pessoas():
+
+  
+   
     nome = request.form["nome"]
     dd = request.form["dia"]
     mm = request.form["mes"]
@@ -35,10 +38,13 @@ def cadastrar_pessoas():
     email = request.form["email"]
     imagem = request.form["imagem"]
     login = request.form["login"]
-    senha = request.form["senha"]
-    senhaconfirma = request.form["senhaconfirma"]
-    lista_global.append(Pessoa(nome, dd, mm, aaaa, rg, cpf, rua, numero, bairro, estado, cidade, cep, email, imagem, login, senha, senhaconfirma))
+    senha = request.form["pass"]
+    senhaconfirma = request.form["passconfirm"]
+    #lista_global.append(Pessoa(nome, dd, mm, aaaa, rg, cpf, rua, numero, bairro, estado, cidade, cep, email, imagem, login, senha, senhaconfirma))
+    Pessoa.create(nome=nome, dd=dd, mm=mm, aaaa=aaaa, rg=rg, cpf=cpf, rua=rua, numero=numero, bairro=bairro, estado=estado, cidade=cidade, cep=cep, email=email, imagem=imagem, login=login, senha=senha, senhaconfirma=senhaconfirma)
+    #return "ok"
     return listar_pessoas()
+    
 
 @app.route("/excluir_pessoas")
 def excluir():
